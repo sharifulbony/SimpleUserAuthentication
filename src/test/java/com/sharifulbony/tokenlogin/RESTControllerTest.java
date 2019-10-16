@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.sharifulbony.tokenlogin.JWT.JwtRequestFilter;
 import com.sharifulbony.tokenlogin.JWT.JwtTokenUtil;
-import com.sharifulbony.tokenlogin.category.CategoryEntity;
-import com.sharifulbony.tokenlogin.category.CategoryRepository;
 import com.sharifulbony.tokenlogin.user.UserService;
 import com.sharifulbony.tokenlogin.user.UserDTO;
 import com.sharifulbony.tokenlogin.user.UserRepository;
@@ -46,9 +44,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RESTControllerTest {
 
 
-    @MockBean
-    private DatabaseInteractionService databaseInteractionService;
-
 
     @MockBean
     UserRepository userRepository;
@@ -61,8 +56,7 @@ public class RESTControllerTest {
     @MockBean
     private UserService userDetailsService;
 
-    @MockBean
-    private CategoryRepository categoryRepository;
+
 
     @MockBean
     private JwtRequestFilter jwtRequestFilter;
@@ -84,71 +78,71 @@ public class RESTControllerTest {
     }
 
 
-    @Test
-    public void getAllCategoryTest() throws Exception {
-
-        CategoryEntity categoryEntityTest = new CategoryEntity("sampleCategory");
-        categoryEntityTest.setId(1);
-
-        List<CategoryEntity> categoryEntityList = Arrays.asList(categoryEntityTest);
-
-        categoryRepository.save(new CategoryEntity("test"));
-
-
-        List<CategoryEntity> test = categoryRepository.findAll();
-
-
-        given(categoryRepository.findAll()).willReturn(categoryEntityList);
-
-
-        mvc.perform(
-                get("/all-category/")
-//                        .contentType(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
-//                .andExpect(jsonPath("$", hasSize(1)))
-//                .andExpect((ResultMatcher) jsonPath("$[0].name", is(categoryEntityTest.getName())
-//                        )
+//    @Test
+//    public void getAllCategoryTest() throws Exception {
 //
-//                );
-
-    }
-
-    @Test
-    public void createCategoryTest() throws Exception {
-
-        CategoryEntity categoryEntityTest = new CategoryEntity("sampleCategory");
-        categoryEntityTest.setId(10);
-//        categoryRepository.save(categoryEntityTest);
-
+//        CategoryEntity categoryEntityTest = new CategoryEntity("sampleCategory");
+//        categoryEntityTest.setId(1);
+//
+//        List<CategoryEntity> categoryEntityList = Arrays.asList(categoryEntityTest);
+//
+//        categoryRepository.save(new CategoryEntity("test"));
+//
+//
+//        List<CategoryEntity> test = categoryRepository.findAll();
+//
+//
+//        given(categoryRepository.findAll()).willReturn(categoryEntityList);
+//
+//
 //        mvc.perform(
-//                post("/create-category").
-//                        requestAttr("name",categoryEntityTest.getName())
+//                get("/all-category/")
 ////                        .contentType(MediaType.APPLICATION_JSON)
-////                        .accept(MediaType.APPLICATION_JSON)
 //        ).andExpect(status().isOk());
+////                .andExpect(jsonPath("$", hasSize(1)))
+////                .andExpect((ResultMatcher) jsonPath("$[0].name", is(categoryEntityTest.getName())
+////                        )
+////
+////                );
+//
+//    }
+//
+//    @Test
+//    public void createCategoryTest() throws Exception {
+//
+//        CategoryEntity categoryEntityTest = new CategoryEntity("sampleCategory");
+//        categoryEntityTest.setId(10);
+////        categoryRepository.save(categoryEntityTest);
+//
+////        mvc.perform(
+////                post("/create-category").
+////                        requestAttr("name",categoryEntityTest.getName())
+//////                        .contentType(MediaType.APPLICATION_JSON)
+//////                        .accept(MediaType.APPLICATION_JSON)
+////        ).andExpect(status().isOk());
+//
+//        mvc.perform(post("/create-category").with(csrf())
+//                .requestAttr("name","ok")
+//        ).andExpect(status().isOk());
+//
+//    }
 
-        mvc.perform(post("/create-category").with(csrf())
-                .requestAttr("name","ok")
-        ).andExpect(status().isOk());
 
-    }
-
-
-    @Test
-    public void saveUser() throws Exception {
-
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUsername("test_user");
-        userDTO.setPassword("12345");
-
-        mvc.perform(
-                post("/register").
-                        content(asJsonString(userDTO))
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON)
-        ).andExpect(status().isOk());
-
-    }
+//    @Test
+//    public void saveUser() throws Exception {
+//
+//        UserDTO userDTO = new UserDTO();
+//        userDTO.setUsername("test_user");
+//        userDTO.setPassword("12345");
+//
+//        mvc.perform(
+//                post("/register").
+//                        content(asJsonString(userDTO))
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .accept(MediaType.APPLICATION_JSON)
+//        ).andExpect(status().isOk());
+//
+//    }
 
 
 

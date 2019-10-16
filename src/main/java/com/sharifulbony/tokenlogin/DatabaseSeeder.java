@@ -1,10 +1,4 @@
 package com.sharifulbony.tokenlogin;
-
-import com.sharifulbony.tokenlogin.category.CategoryEntity;
-import com.sharifulbony.tokenlogin.category.CategoryRepository;
-
-import com.sharifulbony.tokenlogin.product.ProductEntity;
-import com.sharifulbony.tokenlogin.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,17 +8,12 @@ import java.util.*;
 
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
-    private CategoryRepository categoryRepository;
-    private ProductRepository productRepository;
+
 
     @Autowired
     public DatabaseSeeder(
-            CategoryRepository categoryRepository,
-            ProductRepository productRepository
 
     ) {
-        this.categoryRepository = categoryRepository;
-        this.productRepository = productRepository;
 
     }
 
@@ -33,34 +22,8 @@ public class DatabaseSeeder implements CommandLineRunner {
     @Transactional
     public void run(String... args) throws Exception {
 
-        List<CategoryEntity> categoryEntities = new ArrayList<>();
-
         int dataSize =5;
-
         int maxCategoryForProduct=3;
-        for (int i = 1; i <= dataSize; i++) {
-            CategoryEntity categoryEntity = new CategoryEntity("Category" + i);
-            categoryEntities.add(categoryEntity);
-        }
-        categoryRepository.save(categoryEntities);
-
-        List<ProductEntity> productEntities = new ArrayList<>();
-        for (int i = 1; i <= dataSize; i++) {
-            ArrayList<CategoryEntity> randomCategoryEntities = new ArrayList<>();
-            for (int j=0;j<=new Random().nextInt(maxCategoryForProduct);j++){
-                CategoryEntity categoryEntity= categoryEntities.get(new Random().nextInt(dataSize));
-
-                if(!randomCategoryEntities.contains(categoryEntity)){
-
-                    randomCategoryEntities.add(categoryEntity);
-                }
-
-            }
-
-            ProductEntity productEntity = new ProductEntity("Product" + i, randomCategoryEntities);
-            productEntities.add(productEntity);
-        }
-        productRepository.save(productEntities);
 
 
     }

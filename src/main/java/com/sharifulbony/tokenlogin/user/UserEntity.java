@@ -1,10 +1,17 @@
 package com.sharifulbony.tokenlogin.user;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-
+import java.util.Date;
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Table(name = "user")
 public class UserEntity {
 
@@ -12,25 +19,19 @@ public class UserEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Column(unique = true)
-	private String username;
+	private String email;
 	@Column
 	@JsonIgnore
 	private String password;
+	@Column
+	private String firstName;
+	@Column
+	private String lastName;
 
-	public String getUsername() {
-		return username;
-	}
+	@Column(unique = true)
+	private String personalCode;
+	@Column
+	private Date birthDate;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 }

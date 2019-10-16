@@ -1,7 +1,5 @@
 package com.sharifulbony.tokenlogin;
 
-import com.sharifulbony.tokenlogin.product.ProductEntity;
-import com.sharifulbony.tokenlogin.product.ProductRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,42 +13,41 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 @DataJpaTest
 public class JPATest {
 
-    @Autowired
-    private TestEntityManager entityManager;
+//    @Autowired
+//    private TestEntityManager entityManager;
 
-    @Autowired
-    private ProductRepository productRepository;
 
-    @Test
-    public void whenFindByName_thenReturnProduct() {
-        // given
-        ProductEntity sampleTestProduct = new ProductEntity("sampleTestProduct");
-        entityManager.persist(sampleTestProduct);
-        entityManager.flush();
 
-//         when
-        ProductEntity found = productRepository.findByName(sampleTestProduct.getName());
-
-        // then
-        assertThat(found.getName())
-                .isEqualTo(sampleTestProduct.getName());
-    }
-
-    @Test
-    public void checkIfUpdateProduct() {
-        // given
-        ProductEntity sampleTestProduct = new ProductEntity("sampleTestProduct");
-        entityManager.persist(sampleTestProduct);
-        entityManager.flush();
-
-//         when
-        String changedName="changedName";
-        sampleTestProduct.setName(changedName);
-
-        entityManager.persistAndFlush(sampleTestProduct);
-
-        // then
-        assertThat(sampleTestProduct.getName())
-                .isEqualTo(changedName);
-    }
+//    @Test
+//    public void whenFindByName_thenReturnProduct() {
+//        // given
+//        ProductEntity sampleTestProduct = new ProductEntity("sampleTestProduct");
+//        entityManager.persist(sampleTestProduct);
+//        entityManager.flush();
+//
+////         when
+//        ProductEntity found = productRepository.findByName(sampleTestProduct.getName());
+//
+//        // then
+//        assertThat(found.getName())
+//                .isEqualTo(sampleTestProduct.getName());
+//    }
+//
+//    @Test
+//    public void checkIfUpdateProduct() {
+//        // given
+//        ProductEntity sampleTestProduct = new ProductEntity("sampleTestProduct");
+//        entityManager.persist(sampleTestProduct);
+//        entityManager.flush();
+//
+////         when
+//        String changedName="changedName";
+//        sampleTestProduct.setName(changedName);
+//
+//        entityManager.persistAndFlush(sampleTestProduct);
+//
+//        // then
+//        assertThat(sampleTestProduct.getName())
+//                .isEqualTo(changedName);
+//    }
 }
