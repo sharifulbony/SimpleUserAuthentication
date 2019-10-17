@@ -23,6 +23,8 @@ public class DocumentationStaticContext {
     final static String renewTokenDescription="These Method Will renew a token within the policy of token renewal after a token expired";
     final static String renewTokenParam="This method only take the expired token as authorization header " ;
 
+    final static String mainPageDescription="These Method Will return the main page of the project";
+
 
 
 

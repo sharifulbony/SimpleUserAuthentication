@@ -1,3 +1,5 @@
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
@@ -7,6 +9,9 @@
 
 <head>
     <meta charset="utf-8"/>
+
+    <c:set var="context" value="${pageContext.request.contextPath}"/>
+
     <title>Simple Authentication Application</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
@@ -201,12 +206,12 @@
                 </span>
         </v-footer>
 </div>
-<script src="/assets/js/login-component.js"></script>
-<script src="/assets/js/unauthorized-component.js"></script>
-<script src="/assets/js/dashboard-component.js"></script>
-<script src="/assets/js/router.js"></script>
-<script src="/assets/js/vanila-js-methods.js"></script>
-<script src="/assets/js/app.js"></script>
+<script src="${context}/assets/js/login-component.js"></script>
+<script src="${context}/assets/js/unauthorized-component.js"></script>
+<script src="${context}/assets/js/dashboard-component.js"></script>
+<script src="${context}/assets/js/router.js"></script>
+<script src="${context}/assets/js/vanila-js-methods.js"></script>
+<script src="${context}/assets/js/app.js"></script>
 </body>
 
 </html>
