@@ -28,7 +28,7 @@
  
  How to Deploy : 
  1.Build an war/jar file by compiling all the resources
- 2.Deploy using apache tomcat 8.0 or later version.
+ 2.Deploy using apache tomcat 8.0 or later version as  a root context.
  
  
  ** Further Development: Some code restructuring could be done more

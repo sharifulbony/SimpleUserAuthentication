@@ -5,7 +5,8 @@
 
     <groupId>com.sharifulbony</groupId>
     <artifactId>token-login</artifactId>
-    <version>1.0.0</version>
+<!--    <artifactId>@Value("base.url")</artifactId>-->
+<!--    <version>1.0.0</version>-->
     <packaging>war</packaging>
 
     <name>token-login-logout-application</name>
