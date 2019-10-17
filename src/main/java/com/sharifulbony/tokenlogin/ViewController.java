@@ -9,26 +9,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping(value = "/simple-auth")
-@Api(value = "Ticketing System", description = "Operations related to Ticketing System")
+@Api(value = "Authentication System", description = "Operations related to Simple Authentication")
 public class ViewController {
 
 
-    @RequestMapping(value = "/get-dashboard", method = RequestMethod.GET)
-    public ModelAndView getDashboard()
-    {
-        return new ModelAndView("welcome");
-    }
 
-    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    @RequestMapping(value = "/authenticate", method = RequestMethod.GET)
     public ModelAndView getAuth()
     {
         return new ModelAndView("auth");
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView getLogin(){
-        return new ModelAndView("login");
-    }
 
 
 }

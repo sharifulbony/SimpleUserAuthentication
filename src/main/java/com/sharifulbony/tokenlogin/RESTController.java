@@ -21,7 +21,7 @@ import java.util.*;
  */
 @RestController
 @RequestMapping(value = "")
-@Api(value = "Product Inventory System", description = "Operations related to Product Inventory Management System")
+@Api(value = "Simple Authentication System", description = "Operations related to Simple Authentication  Management System")
 
 public class RESTController {
 
@@ -38,9 +38,9 @@ public class RESTController {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
-    @RequestMapping(value = "/get-user")
-    @ApiOperation(value = DocumentationStaticContext.userRegisterDescription, response = Iterable.class)
-    public List<UserEntity> getUser(@ApiParam(value = DocumentationStaticContext.userRegisterParam) HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/get-user",method = RequestMethod.GET)
+    @ApiOperation(value = DocumentationStaticContext.userInfoDescription, response = Iterable.class)
+    public List<UserEntity> getUser(@ApiParam(value = DocumentationStaticContext.userInfoParam) HttpServletRequest request) throws Exception {
         final String requestTokenHeader = request.getHeader("Authorization");
         String initial=userDetailsService.parseUserNameFromToken(requestTokenHeader);
         UserEntity userEntity=userDetailsService.loadUserByInitials(initial) ;
@@ -60,9 +60,9 @@ public class RESTController {
     }
 
 
-    @RequestMapping(value = "/refresh-token")
-    @ApiOperation(value = DocumentationStaticContext.userAuthenticationDescription, response = Iterable.class)
-    public ResponseEntity<?> refreshAuthenticationToken(@ApiParam(value = DocumentationStaticContext.userAuthenticationParam)HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/refresh-token",method = RequestMethod.GET)
+    @ApiOperation(value = DocumentationStaticContext.refreshTokenDescription, response = Iterable.class)
+    public ResponseEntity<?> refreshAuthenticationToken(@ApiParam(value = DocumentationStaticContext.refreshTokenParam)HttpServletRequest request) throws Exception {
 
         final String requestTokenHeader = request.getHeader("Authorization");
         String username=userDetailsService.parseUserNameFromToken(requestTokenHeader);
@@ -71,9 +71,9 @@ public class RESTController {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    @RequestMapping(value = "/renew-token")
-    @ApiOperation(value = DocumentationStaticContext.userAuthenticationDescription, response = Iterable.class)
-    public ResponseEntity<?> renewAuthenticationToken(@ApiParam(value = DocumentationStaticContext.userAuthenticationParam)HttpServletRequest request) throws Exception {
+    @RequestMapping(value = "/renew-token",method = RequestMethod.GET)
+    @ApiOperation(value = DocumentationStaticContext.renewTokenDescription, response = Iterable.class)
+    public ResponseEntity<?> renewAuthenticationToken(@ApiParam(value = DocumentationStaticContext.renewTokenParam)HttpServletRequest request) throws Exception {
 
         final String requestTokenHeader = request.getHeader("Authorization");
         String jwtToken = requestTokenHeader.substring(7);
