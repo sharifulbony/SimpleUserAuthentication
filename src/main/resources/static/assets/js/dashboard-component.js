@@ -86,7 +86,7 @@ var Dashboard = {
             val || this.close()
         },
         expire: function (val) {
-            localStorage.setItem("refresh",val)
+            localStorage.setItem("refresh",val);
             if (val === 0) {
                 localStorage.setItem("expire", 300);
                 //
@@ -106,8 +106,8 @@ var Dashboard = {
                 (result) => {
                     this.userInfo = result.data;
                     this.userInfo.forEach( item=> {
-                        let timeS = timeConverter(item.birthDate);
-                        item.birthDate = timeS;
+
+                        item.birthDate = timeConverter(item.birthDate);
 
                     })
                 }
@@ -120,7 +120,7 @@ var Dashboard = {
         logout() {
             localStorage.clear();
             app.success=true;
-            app.successMessage="Logout Successfully!!!"
+            app.successMessage="Logout Successfully!!!";
             router.push("/login")
         },
 

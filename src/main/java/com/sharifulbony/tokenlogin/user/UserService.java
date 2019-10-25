@@ -45,8 +45,8 @@ public class UserService implements UserDetailsService {
 
 
     public String parseUserNameFromToken(String requestTokenHeader) {
-        String username = null;
-        String jwtToken = null;
+        String username;
+        String jwtToken;
         if (requestTokenHeader != null) {
             jwtToken = requestTokenHeader.substring(7);
             try {
@@ -78,11 +78,11 @@ public class UserService implements UserDetailsService {
 
     }
 
-    public boolean validatePass(String given, String saved) throws Exception {
+    @SuppressWarnings("SameReturnValue")
+    private void validatePass(String given, String saved) throws Exception {
 
         boolean hash = bcryptEncoder.matches(given, saved);
         if (hash) {
-            return true;
         } else {
             throw new Exception("INVALID_CREDENTIALS");
         }
