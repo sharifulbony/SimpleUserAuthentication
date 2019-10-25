@@ -1,7 +1,9 @@
-package com.sharifulbony.tokenlogin;
-import com.sharifulbony.tokenlogin.JWT.JwtRequest;
-import com.sharifulbony.tokenlogin.JWT.JwtResponse;
-import com.sharifulbony.tokenlogin.JWT.JwtTokenUtil;;
+package com.sharifulbony.tokenlogin.controller;
+import com.sharifulbony.tokenlogin.jwt.JwtRequest;
+import com.sharifulbony.tokenlogin.jwt.JwtResponse;
+import com.sharifulbony.tokenlogin.jwt.JwtTokenUtil;;
+import com.sharifulbony.tokenlogin.constant.DocumentationStaticContext;
+import com.sharifulbony.tokenlogin.constant.PolicyConstant;
 import com.sharifulbony.tokenlogin.user.UserEntity;
 import com.sharifulbony.tokenlogin.user.UserService;
 import com.sharifulbony.tokenlogin.user.UserRepository;
@@ -52,7 +54,6 @@ public class RESTController {
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     @ApiOperation(value = DocumentationStaticContext.userAuthenticationDescription, response = Iterable.class)
     public ResponseEntity<?> createAuthenticationToken(@ApiParam(value = DocumentationStaticContext.userAuthenticationParam) @RequestBody JwtRequest authenticationRequest) throws Exception {
-
         userDetailsService.authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
@@ -63,7 +64,6 @@ public class RESTController {
     @RequestMapping(value = "/refresh-token",method = RequestMethod.GET)
     @ApiOperation(value = DocumentationStaticContext.refreshTokenDescription, response = Iterable.class)
     public ResponseEntity<?> refreshAuthenticationToken(@ApiParam(value = DocumentationStaticContext.refreshTokenParam)HttpServletRequest request) throws Exception {
-
         final String requestTokenHeader = request.getHeader("Authorization");
         String username=userDetailsService.parseUserNameFromToken(requestTokenHeader);
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
@@ -81,7 +81,7 @@ public class RESTController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         Date expireTime=jwtTokenUtil.getExpirationDateFromToken(jwtToken);
         Long currentTime=System.currentTimeMillis();
-        Long withinPolicyTime=expireTime.getTime()+ Policy.tokenRenewPolicy;
+        Long withinPolicyTime=expireTime.getTime()+ PolicyConstant.tokenRenewPolicy;
         if (currentTime<withinPolicyTime){
             final String token = jwtTokenUtil.generateToken(userDetails);
             return ResponseEntity.ok(new JwtResponse(token));

@@ -1,4 +1,4 @@
-package com.sharifulbony.tokenlogin;
+package com.sharifulbony.tokenlogin.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,21 +36,4 @@ public class ViewConfigure extends WebMvcConfigurerAdapter {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/**")
-//                .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
-//    }
-
-//    @Override
-//    public void configureDefaultServletHandling(
-//            DefaultServletHandlerConfigurer configurer) {
-//        configurer.enable();
-//    }
-
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/resources/static/**").addResourceLocations("/resources/static","file:resources/static/");
-//    }
 }

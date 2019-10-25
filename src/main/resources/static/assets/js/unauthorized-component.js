@@ -1,7 +1,7 @@
 var Unauthorized = {
     template: '<div>' +
         '<h1 style="text-align: center">' +
-        'Http Status Code 401: Token  expired. You can renew this token by clicking the button below within {{expire}}  </h1>' +
+        'Http Status Code 401: Token  expired. You can renew this token by clicking the button below within {{expire}} seconds  </h1>' +
         '<v-btn\n style="left: 50%"' +
         '                        class="Success"\n' +
         '                        dark\n' +
@@ -51,12 +51,9 @@ var Unauthorized = {
     watch: {
         expire: function (val) {
 
-            if (typeof val === 'string' || val instanceof String) {
-                let minutes = parseInt(val.split(":")[0]) * 60;
-                let seconds = parseInt(val.split(":")[1]);
-                localStorage.setItem("expire", minutes+seconds);
-            }
-            if (val === "00:00") {
+            localStorage.setItem("expire", val);
+            if (val === 0) {
+                localStorage.clear();
                 router.push("/login");
 
             }
@@ -64,6 +61,7 @@ var Unauthorized = {
     },
     created() {
         let ifExpireExist = localStorage.getItem("expire");
+        localStorage.setItem("refresh", 10);
         if(ifExpireExist){
             this.expire=ifExpireExist;
         }

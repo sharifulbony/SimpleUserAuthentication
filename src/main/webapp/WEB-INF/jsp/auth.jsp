@@ -31,8 +31,10 @@
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
 
+
 </head>
 <body>
+
 <div id="app">
     <v-app id="inspire">
         <v-card v-if="showMenu"
@@ -206,12 +208,14 @@
                 </span>
         </v-footer>
 </div>
+
 <script src="${context}/assets/js/login-component.js"></script>
 <script src="${context}/assets/js/unauthorized-component.js"></script>
 <script src="${context}/assets/js/dashboard-component.js"></script>
 <script src="${context}/assets/js/router.js"></script>
 <script src="${context}/assets/js/vanila-js-methods.js"></script>
 <script src="${context}/assets/js/app.js"></script>
+
 </body>
 
 </html>

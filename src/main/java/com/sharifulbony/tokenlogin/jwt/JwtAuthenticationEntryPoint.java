@@ -1,4 +1,4 @@
-package com.sharifulbony.tokenlogin.JWT;
+package com.sharifulbony.tokenlogin.jwt;
 
 import java.io.IOException;
 import java.io.Serializable;

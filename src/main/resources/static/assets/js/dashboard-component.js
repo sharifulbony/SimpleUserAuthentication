@@ -27,7 +27,7 @@ var Dashboard = {
                         ></v-divider>
                         <div>Token expires in <span id="time">{{expire}}</span> seconds!</div>
                         <div class="flex-grow-1"></div>
-                        <v-dialog v-model="dialog" max-width="500px">
+                        <v-dialog max-width="500px">
                             <template v-slot:activator="{ on }">
                                 <v-btn color="warn" @click="logout" dark class="mb-2" v-on="on">Logout</v-btn>
                             </template>
@@ -86,14 +86,10 @@ var Dashboard = {
             val || this.close()
         },
         expire: function (val) {
-            if (typeof val === 'string' || val instanceof String) {
-                let minutes = parseInt(val.split(":")[0]) * 60;
-                let seconds = parseInt(val.split(":")[1]);
-                localStorage.setItem("refresh", minutes + seconds);
-            }
-            if (val === "00:00") {
+            localStorage.setItem("refresh",val)
+            if (val === 0) {
                 localStorage.setItem("expire", 300);
-                localStorage.setItem("refresh", 10);
+                //
                 router.push("/unauthorized");
             }
         }

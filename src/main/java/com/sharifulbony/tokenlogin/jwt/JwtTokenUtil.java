@@ -1,6 +1,6 @@
-package com.sharifulbony.tokenlogin.JWT;
+package com.sharifulbony.tokenlogin.jwt;
 
-import com.sharifulbony.tokenlogin.Policy;
+import com.sharifulbony.tokenlogin.constant.PolicyConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -55,7 +55,7 @@ public class JwtTokenUtil implements Serializable {
 //   compaction of the JWT to a URL-safe string
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() +Policy.tokenExpirationPolicy))
+                .setExpiration(new Date(System.currentTimeMillis() + PolicyConstant.tokenExpirationPolicy))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
     //validate token

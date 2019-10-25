@@ -1,8 +1,8 @@
 package com.sharifulbony.tokenlogin.user;
 
 import java.util.ArrayList;
-
-import com.sharifulbony.tokenlogin.JWT.JwtTokenUtil;
+import java.util.regex.Pattern;
+import com.sharifulbony.tokenlogin.jwt.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -109,7 +109,12 @@ public class UserService implements UserDetailsService {
         if (userEntity.getLastName() == null || userEntity.getLastName().length() < 1) {
             throw new RequestRejectedException("Invalid Last Name");
         }
-        if (userEntity.getEmail() == null || userEntity.getEmail().length() < 1) {
+        Pattern pattern= Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        if (
+                userEntity.getEmail() == null
+                || userEntity.getEmail().length() < 1
+                || !pattern.matcher(userEntity.getEmail()).matches())
+        {
             throw new RequestRejectedException("Invalid Email");
         }
 
